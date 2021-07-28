@@ -1,0 +1,58 @@
+{% block content %}
+<head>
+ <link href="{{ url_for('static', filename='home.css') }}" rel="stylesheet"/> 
+</head>
+
+<h1 style="color: #ff4500; text-align: center;">Hello {{username}}!
+<span><a href="#"><img id="logo" src="{{url_for('static', filename='logo.jpg')}}"></a></span></h1>
+<hr> 
+<h3 style="color: orange; text-align: center;">{{quote}}</h3><hr>
+<p>
+ <a id="a" href="{{ url_for('edit.add_task', username = username) }}">Add task</a>
+ <a id="a" href="{{ url_for('edit.logout') }}">Logout</a>
+ Please move mouse onto table to know the progress of the work.(Green=>Time renaining &#128512;, Red=>Time Out &#128532;)
+</p> 
+ <table id="myTable" class="table table-striped">
+   <tr>
+     <th> Serial No</th>
+     <th> Task</th>
+     <th> Date_added</th>
+     <th> Due_date </th>
+   </tr>
+        {% for id, todo, date_added, due_date, username, user_id in todos %}
+   <tr onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">              
+     <td>{{user_id}}</td>
+     <td>{{todo}} </td>
+     <td>{{date_added}}</td>
+     <td>{{due_date}}</td>
+   </tr>
+        {%endfor%}
+ </table> 
+ <p id="demo"></p> 
+ <p id="demo1"></p>
+ <script>
+
+function mouseOver(Rows){
+    var Cells = Rows.getElementsByTagName("td").item(3).innerHTML;
+    var dd = new Date(Cells);
+    var due_date = Date.parse(dd);
+    var date = new Date();
+    var y = date.getFullYear();
+    var m = date.getMonth();
+    var d = date.getDate();
+    var t = new Date(y,m,d);
+    var today = Date.parse(t);
+    if (today < due_date){
+    Rows.style.background = 'lightgreen';
+    }
+    else{
+    Rows.style.background = 'red';
+    }
+}
+function mouseOut(Rows){
+    Rows.style.background = 'white';
+}
+document.getElementById("demo").innerHTML = "Date :" + Date();
+ </script>
+
+{% endblock %}

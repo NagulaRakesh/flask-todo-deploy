@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <h1 style="color:tomato; text-align:centre;">Welcome to TO-DO List</h1>
+     <ul>
+      <li><a href="{{ url_for('edit.register') }}">Register</a>
+      <li><a href="{{ url_for('edit.login') }}">Log In</a>
+     </ul>
+     <hr>
+  </head>
+<body>   
+<section class="content">
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+</body>
+</html>

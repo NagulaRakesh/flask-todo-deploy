@@ -1,0 +1,39 @@
+{% block content %}
+<head>
+  <link href="{{ url_for('static', filename='add_task.css') }}" rel="stylesheet"/>
+</head> 
+<body>
+
+<h3>Adding task</h3>
+
+<div>
+  <form method="post">
+    <label for="add_task">Enter task to be added</label><br>
+    <input name="task" type="text" id="task" placeholder="Enter task here"required> </input><br>
+
+    <label for="due_date">Enter due date</label><br>
+    <input id="due_date" name="due_date" type='date' min='2021-07-23' placeholder="Add due_date" required></input>
+
+    <p><input type="submit" value="Add"></p>
+    
+  </form>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">  
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("due_date").setAttribute("min", today);
+</script>
+{% endblock %}
