@@ -3,11 +3,25 @@ import psycopg2
 import click 
 from flask import current_app, g
 from flask.cli import with_appcontext
+import urllib.parse as urlparse
 
 def get_db():
     if 'db' not in g:
         dbname = current_app.config['SQLALCHEMY_DATABASE_URI'] 
-        g.db = psycopg2.connect(f"dbname={dbname}")
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+        dbname = url.path[1:]
+        user = url.username
+        password = url.password
+        host = url.hostname
+        port = url.port
+
+        g.db = psycopg2.connect(
+                    dbname=dbname,
+                    user=user,
+                    password=password,
+                    host=host,
+                    port=port
+                    )
     return g.db
 
 def close_db(e=None):
