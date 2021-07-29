@@ -4,11 +4,10 @@ from flask import Flask, render_template, request
 
 
 def create_app():
-    # create and configure the app
     app = Flask(__name__)
     app.config.from_mapping(
     SECRET_KEY='dev',
-    DATABASE="TODO"
+    DATABASE="DATABASE_URL"
     )
 
     from . import db 
