@@ -7,7 +7,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_mapping(
     SECRET_KEY='dev',
-    DATABASE="DATABASE_URL"
+    DATABASE="TODO"
     )
 
     from . import db 

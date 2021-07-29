@@ -13,5 +13,6 @@ create table todo_list (
        date_added date not null default current_date,
        due_date date not null,
        username text,
+       progress text,
        user_id int default 0
        );

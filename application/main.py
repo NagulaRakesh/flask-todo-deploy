@@ -64,18 +64,26 @@ def login():
         flash(error)
     return render_template('main/login.html')  
 
-@bp.route('/<username>/home')
+@bp.route('/<username>/home', methods = ('GET','POST'))
 def home(username):
-    quotes = [ "Better three hours too soon than a minute too late", "Better never than Late",
-    "You may as well borrow a person's money as his time.", "Punctuality is the first step towards success."]
+    
+    quotes = [ "Better three hours too soon than a minute too late", "Better never than Late", "You may as well borrow a person's money as his time.", "Punctuality is the first step towards success."]
     quote = random.choice(quotes)
     conn = db.get_db()
-    cursor = conn.cursor()    
-    todos = cursor.execute(f"select * from todo_list where username = %s", (username,))
-    todos = cursor.fetchall() 
-    return render_template('main/todo/home.html', todos = todos, username = username, quote = quote)
-    conn.close()
-
+    cursor = conn.cursor()   
+     
+    if request.method == 'GET':    
+        todos = cursor.execute(f"select * from todo_list where username = %s order by user_id", (username,))
+        todos = cursor.fetchall() 
+        conn.commit()
+        return render_template('main/todo/home.html', todos = todos, username = username, quote = quote)
+        
+    elif request.method == 'POST':
+        user_id = request.args.get("user_id")
+        cursor.execute("update todo_list set progress = %s where username = %s and user_id = %s;", ('Done', username, user_id))
+        conn.commit()
+        return redirect(url_for('edit.home', username = username))
+   
 @bp.route('/<username>/add_task', methods =('GET','POST'))
 def add_task(username):
     if request.method == 'POST':
@@ -90,7 +98,7 @@ def add_task(username):
             user_id = 1
         else:
             user_id = user_id +1    
-        cursor.execute('INSERT INTO todo_list (username, task, due_date, user_id) values (%s, %s, %s, %s)',(username, task, due_date, user_id))
+        cursor.execute('INSERT INTO todo_list (username, task, due_date, progress, user_id) values (%s, %s, %s, %s, %s)',(username, task, due_date, 'In progress', user_id))
         conn.commit()
         return redirect(url_for('edit.home', username = username))
 

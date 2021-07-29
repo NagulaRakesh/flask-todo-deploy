@@ -7,7 +7,7 @@ table {
 
 th {
      text-align: left;
-     background-color: #04AA6D;
+     background-color: Darkred;
      color: white;
      padding-top: 12px;
 }
@@ -30,3 +30,10 @@ td {
   height: 125px;
   width: auto; /* correct proportions to specified height */
 }
+body {background-image: url(https://image.shutterstock.com/image-photo/writers-table-flat-lay-composition-260nw-1017732259.jpg);       
+          height: auto;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          opacity: 1;
+          }

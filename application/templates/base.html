@@ -1,14 +1,19 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <h1 style="color:tomato; text-align:centre;">Welcome to TO-DO List</h1>
-     <ul>
-      <li><a href="{{ url_for('edit.register') }}">Register</a>
-      <li><a href="{{ url_for('edit.login') }}">Log In</a>
-     </ul>
-     <hr>
-  </head>
-<body>   
+<head>
+<style>
+body {background-image: url(https://clickup.com/blog/wp-content/uploads/2019/01/to-do-list-apps.png);       
+          height: auto;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;}
+</style>  
+<h1 style="color:red; text-align:centre;">Welcome to TO-DO List</h1>
+<a href="{{ url_for('edit.register') }}">Register</a><br>
+<a href="{{ url_for('edit.login') }}">Log In</a>
+<hr>
+</head>
+<body>  
 <section class="content">
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
