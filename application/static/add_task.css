@@ -36,7 +36,7 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
-body {background-image: url('https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1543844649000/photosp/b43cfeec-92b2-4f16-98b7-60a33b4b513a/stock-photo-text-background-list-minimalism-bulletin-board-to-do-cork-board-texture-background-room-for-text-b43cfeec-92b2-4f16-98b7-60a33b4b513a.jpg');       
+body {background-image: url('https://img.freepik.com/free-vector/frame-pastel-colors_53876-93730.jpg?size=626&ext=jpg');       
           height: auto;
           background-position: center;
           background-repeat: no-repeat;
@@ -44,6 +44,8 @@ body {background-image: url('https://res.cloudinary.com/twenty20/private_images/
 }
 
 h1 {
+    text-align: center;
+    border: 3px solid green;
     color: white;
     background: darkviolet; 
     padding: 20px"
