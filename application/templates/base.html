@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
 <style>
-body {background-image: url(https://clickup.com/blog/wp-content/uploads/2019/01/to-do-list-apps.png);       
+body {background-image: url('https://static2.bigstockphoto.com/8/6/2/large1500/268758547.jpg');       
           height: auto;
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;}
 </style>  
 <h1 style="color:red; text-align:centre;">Welcome to TO-DO List</h1>
-<a href="{{ url_for('edit.register') }}">Register</a><br>
-<a href="{{ url_for('edit.login') }}">Log In</a>
+<ul>
+ <li><h2><a style="color: blue;" href="{{ url_for('edit.register') }}">Register</a></h2>
+ <li><h2><a style="color: blue;" href="{{ url_for('edit.login') }}">Log In</a></h2>
+</ul>
+<hr>
 <hr>
 </head>
 <body>  
